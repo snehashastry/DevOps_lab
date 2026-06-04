@@ -1,0 +1,185 @@
+Program 6
+Program06A
+$ mkdir Pro06A
+$ cd Pro06A
+$ git init
+$ touch f1.txt
+Add the content to f1.txt using gedit
+$ git add f1.txt
+$ git commit -m "Created f1.txt"
+$ touch f2.txt
+$ git add f2.txt
+$ git commit -m "Created f2.txt"
+$ touch f3.txt
+$ git add f3.txt
+$ git commit -m "Created f3.txt"
+$ touch f4.txt
+$ git add f4.txt
+$ git commit -m "Created f4.txt"
+$ touch f5.txt
+$ git add f5.txt
+$ git commit -m "Created f5.txt"
+$ git log -n 5
+$ git log -n 5 --oneline
+$ git revert 4d10cd2986220(commit-id)
+
+--------------------------------------------------------------
+--------------------------------------------------------------
+Program06B
+$ mkdir Pro06B
+$ cd Pro06B
+$ git init
+$ touch f1.txt
+$ git add f1.txt
+$ git commit -m "Create f1.txt"
+Add the content to f1.txt using gedit
+$ git config --global alias.st status
+$ git st
+$ git add f1.txt
+$ git commit -m "Added content to f1.txt"
+$ git config --global alias.lg "log --oneline --graph"
+$ git lg
+
+Program 7
+Program 07A
+
+$ mkdir pro07A
+$ cd pro07A
+$ git init
+$ echo "hello" >> f1.txt
+$ git add f1.txt
+$ git commit -m "Pro07A in Main(master)"
+$ git checkout -b star
+Switched to a new branch 'star'
+$ echo "hello from star">>f1.txt
+$ git add f1.txt
+$ git commit -m "Pro07A in star"
+$ git checkout main
+$ git merge star -m "merge star into main"
+$ git log --oneline
+$ git revert -m 1 40721f3(commit id)
+$ git log --oneline
+--------------------------------------------------------------
+--------------------------------------------------------------
+Program 07B
+
+$ mkdir pro7B
+$ cd pro7B
+$ git init
+$ echo "This is pro7b">>f1.txt
+$ git add f1.txt
+$ git commit -m "pro07B"
+$ git checkout -b star
+$ echo "This is pro7b in star">>f1.txt
+$ git add f1.txt
+$ git commit -m "pro07B in star"
+$ git checkout main
+$ git branch -D star
+$ git reflog
+$ git checkout -b star a967f8d
+$ git log
+
+Program 8
+Program08A
+$ mkdir pro08A
+$ cd pro08A
+$ git init
+$ touch f1.txt f2.txt f3.txt f4.txt f5.txt
+$ mkdir dir
+$ cd dir
+$ touch f1.txt
+$ git status
+$ cd ..
+$ git status
+# Preview which untracked files will be removed (safe check)
+$ git clean -n
+# Remove untracked files only
+$ git clean -f
+# Remove untracked files and untracked directories
+$ git clean -fd
+# Verify cleanup
+$ git status
+--------------------------------------------------------------
+--------------------------------------------------------------
+Program 08B
+$ mkdir pro08B
+$ cd pro08B
+$ git init
+$ echo "Hi how are you" >> f1.txt
+$ echo "Bye" >> f2.txt
+$ git add f1.txt f2.txt
+$ git commit -m "Program 08B"
+$ git archive --format=zip --output=main.zip main(branchName)
+$ git archive --format=tar --output=main.tar main(branchName)
+$ git log --oneline
+$ git archive --format=zip --output=commit.zip b18cb74(commit-id)
+
+
+Program 10
+Step 1: Login GitHub account -> Create a new repository
+-> repository name: [project 10]
+   add readme : on
+       ↓
+   Create repository
+Next add file -> Create new file
+                     ↓ 
+                 type print('Hello Jenkins')
+                      ↓ 
+                 save as hello.py (python file)
+                      ↓ 
+                 commint changes
+Step 2: Go back to Jenkins Home page
+     1 settings -> manage Jenkins -> plugins
+                                       ↓ 
+                                    installed plugins 
+                                        ↓
+                                    search for git                
+     2  -> Manage Jenkins -> Tools
+                              ↓
+                            git installation
+                              ↓
+                            goto cmd
+                              ↓
+                            type : where git
+                               ↓
+                            copy the path
+                               ↓  
+                            path : paste 
+                                     ↓     
+                                    save
+      3 -> manage Jenkins -> credentials -> system -> Global -> add credentials
+                                                                    ↓
+                                                                username: |
+                                                                password: |-> any name
+                                                                    ↓ 
+                                                                Create                                 
+Step 3: Go back to Jenkins
+            ↓
+        Create Job -> Enter a item name [Project 10]
+            ↓
+        Select Freestyle project
+            ↓
+           ok
+        Scrolldown Select source code management
+                           ↓
+                    Select git 
+                           ↓
+                    repository URL:paste[copy from GitHub]
+            Then Select credentials
+                         ↓
+                        Branch specifier -> (changes to main from master)
+                         ↓
+                        Additional behavior
+                         ↓
+                        click on add -> checkout to a sub directory
+            Then Select Build steps
+                          ↓
+                        add Build steps
+                          ↓
+                        select execute windows batch command
+                          ↓
+                        command -> type python hello.py
+                          ↓
+                        apply and save
+                          ↓
+                        Then Build            
